@@ -8,6 +8,7 @@ import others from "./Routes/otherRoute/route.js";
 import products from "./Routes/productsRoute/route.js";
 import users from "./Routes/userRoute/route.js";
 import carts from "./Routes/cartRoute/route.js";
+import order from "./Routes/orderRoute/route.js";
 import cloudinary from "cloudinary";
 
 const app = express();
@@ -47,3 +48,4 @@ app.use("/api", others);
 app.use("/api", products);
 app.use("/api", users);
 app.use("/api", carts);
+app.use("/api", order);

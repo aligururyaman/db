@@ -9,8 +9,9 @@ export const createProduct = async (req, res) => {
     const slug = toSlug(name);
     const file = req.file;
 
-    console.log("Request body:", req.body);
-    console.log("File:", file);
+    if (!file) {
+      return NextResponse.json({ error: "File is required" }, { status: 400 });
+    }
 
     const imageUrl = await uploadImageToCloudinary(file);
 

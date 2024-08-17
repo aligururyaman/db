@@ -11,7 +11,7 @@ export const fetchCart = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-// Sepete ürün ekleme
+
 export const addToCart = async (req, res) => {
   const { userId, productId, quantity } = req.body;
 
@@ -48,9 +48,8 @@ export const addToCart = async (req, res) => {
   }
 };
 
-// Kullanıcıya ait tüm sepetleri getirme
 export const getAllCartsByUserId = async (req, res) => {
-  const userId = req.userId; // Middleware ile alınan userId
+  const userId = req.userId;
 
   try {
     const cart = await Cart.findOne({ user: userId }).populate("items.product");
@@ -63,7 +62,6 @@ export const getAllCartsByUserId = async (req, res) => {
   }
 };
 
-// Sepeti güncelleme
 export const updateCart = async (req, res) => {
   const { id } = req.params;
   const { items } = req.body;
@@ -82,6 +80,7 @@ export const updateCart = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
 export const deleteCartItem = async (req, res) => {
   const { userId, itemId } = req.params;
 
@@ -111,7 +110,7 @@ export const deleteCartItem = async (req, res) => {
 
 // Kullanıcıya ait tüm sepetleri silme
 export const deleteAllCartsByUserId = async (req, res) => {
-  const userId = req.userId; // Middleware ile alınan userId
+  const { userId } = req.params;
 
   try {
     await Cart.deleteMany({ user: userId });
